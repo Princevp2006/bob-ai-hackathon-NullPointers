@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PowerGuard AI — Maintenance Plan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar__brand">&#9889; PowerGuard <span>AI</span></div>
+    <ul class="navbar__links">
+        <li><a href="/">Dashboard</a></li>
+        <li><a href="/assets">Assets</a></li>
+        <li><a href="/maintenance" class="active">Maintenance Plan</a></li>
+    </ul>
+</nav>
+
+<main class="main-content">
+
+    <div class="page-header">
+        <h1>Prioritised Maintenance &amp; Crew Pre-Positioning Plan</h1>
+        <p>Generated from ML risk scores. Ranked by combined risk, criticality and asset age.</p>
+    </div>
+
+    <!-- Summary KPIs -->
+    <div class="kpi-row" id="maint-kpis">
+        <div class="kpi-card kpi-card--critical">
+            <span class="kpi-card__label">Emergency</span>
+            <span class="kpi-card__value" id="mk-emergency">—</span>
+            <span class="kpi-card__sub">immediate dispatch</span>
+        </div>
+        <div class="kpi-card kpi-card--high">
+            <span class="kpi-card__label">Priority (48 h)</span>
+            <span class="kpi-card__value" id="mk-priority">—</span>
+        </div>
+        <div class="kpi-card kpi-card--medium">
+            <span class="kpi-card__label">Scheduled</span>
+            <span class="kpi-card__value" id="mk-scheduled">—</span>
+        </div>
+        <div class="kpi-card kpi-card--low">
+            <span class="kpi-card__label">Routine</span>
+            <span class="kpi-card__value" id="mk-routine">—</span>
+        </div>
+        <div class="kpi-card kpi-card--total">
+            <span class="kpi-card__label">Total Crew Hours</span>
+            <span class="kpi-card__value" id="mk-hours">—</span>
+            <span class="kpi-card__sub">estimated</span>
+        </div>
+    </div>
+
+    <!-- Actions Row -->
+    <div class="actions-row">
+        <button class="btn btn--outline btn--sm" id="btn-reload">&#8635; Reload Plan</button>
+        <button class="btn btn--primary btn--sm" id="btn-regenerate">&#9881; Regenerate Plan</button>
+    </div>
+    <div id="maint-status"></div>
+
+    <!-- Plan Table -->
+    <div class="panel">
+        <div class="panel__title">Work Orders</div>
+        <div class="table-wrap">
+            <table id="maint-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Asset</th>
+                        <th>Region</th>
+                        <th>Risk Level</th>
+                        <th>Score</th>
+                        <th>Action Required</th>
+                        <th>Target Date</th>
+                        <th>Crew</th>
+                        <th>Est. Hours</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="maint-body">
+                    <tr><td colspan="10" class="table-empty">
+                        <div class="spinner-wrap"><div class="spinner"></div></div>
+                    </td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Notes Panel -->
+    <div class="panel">
+        <div class="panel__title">Ranking Formula</div>
+        <div class="alert alert--info" style="margin-bottom:0">
+            <strong>priority_score</strong> =
+            combined_risk_score &times; 0.70 +
+            criticality_score &times; 0.20 +
+            age_factor &times; 0.10
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <strong>combined_risk</strong> =
+            P<sub>A</sub>(HIGH) &times; 0.60 +
+            P<sub>B</sub>(HIGH) &times; 0.30 +
+            criticality &times; 0.10
+        </div>
+    </div>
+
+</main>
+
+<footer class="footer">
+    PowerGuard AI &mdash; NullPointers Team &mdash; IBM Bob AI Hackathon
+</footer>
+
+<script src="{{ url_for('static', filename='js/maintenance.js') }}"></script>
+</body>
+</html>

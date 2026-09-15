@@ -1,0 +1,25 @@
+{
+  "model_type": "rf",
+  "feature_names": [
+    "tmpf",
+    "relh",
+    "sknt",
+    "p01i",
+    "hour_of_day",
+    "month",
+    "year",
+    "season_enc",
+    "state_enc"
+  ],
+  "class_names": [
+    "LOW",
+    "MEDIUM",
+    "HIGH"
+  ],
+  "n_features": 9,
+  "train_cutoff": "2021-01-01",
+  "cv_f1_weighted": "0.6862 +/- 0.0128",
+  "test_accuracy": 0.6107,
+  "test_roc_auc": 0.6589,
+  "test_f1_macro": 0.44509831822554874
+}

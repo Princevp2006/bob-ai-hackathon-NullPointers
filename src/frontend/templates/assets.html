@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PowerGuard AI — Assets</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar__brand">&#9889; PowerGuard <span>AI</span></div>
+    <ul class="navbar__links">
+        <li><a href="/">Dashboard</a></li>
+        <li><a href="/assets" class="active">Assets</a></li>
+        <li><a href="/maintenance">Maintenance Plan</a></li>
+    </ul>
+</nav>
+
+<main class="main-content">
+
+    <div class="page-header">
+        <h1>Asset Registry</h1>
+        <p>All monitored power transformers and substations with latest risk scores</p>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <input class="toolbar__search" id="search-input"
+               type="text" placeholder="Search by name or region…" />
+        <select class="toolbar__select" id="filter-state">
+            <option value="">All States</option>
+        </select>
+        <select class="toolbar__select" id="filter-level">
+            <option value="">All Risk Levels</option>
+            <option value="CRITICAL">Critical</option>
+            <option value="HIGH">High</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="LOW">Low</option>
+        </select>
+        <button class="btn btn--outline btn--sm" id="btn-clear-filters">Clear</button>
+        <span class="text-muted" id="filter-count" style="margin-left:.5rem;font-size:.85rem;"></span>
+    </div>
+
+    <!-- Asset Table -->
+    <div class="panel">
+        <div class="table-wrap">
+            <table id="asset-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Region</th>
+                        <th>State</th>
+                        <th>kV</th>
+                        <th>Installed</th>
+                        <th>Customers</th>
+                        <th>Risk Level</th>
+                        <th>Score</th>
+                        <th>Criticality</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="asset-body">
+                    <tr><td colspan="11" class="table-empty">
+                        <div class="spinner-wrap"><div class="spinner"></div></div>
+                    </td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>
+
+<!-- Asset Detail Modal -->
+<div class="modal-backdrop" id="asset-modal">
+    <div class="modal">
+        <div class="modal__header">
+            <span class="modal__title" id="modal-title">Asset Detail</span>
+            <button class="modal__close" id="modal-close">&times;</button>
+        </div>
+
+        <div class="modal__section">
+            <h3>Asset Info</h3>
+            <dl class="detail-grid" id="modal-info"></dl>
+        </div>
+
+        <div class="modal__section">
+            <h3>Latest Risk Score</h3>
+            <dl class="detail-grid" id="modal-risk"></dl>
+        </div>
+
+        <div class="modal__section">
+            <h3>Sensor Reading History</h3>
+            <canvas id="modal-sensor-chart" height="160"></canvas>
+        </div>
+
+        <div style="text-align:right;margin-top:1rem;">
+            <button class="btn btn--primary btn--sm" id="modal-predict-btn">
+                &#9654; Run Prediction Now
+            </button>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    PowerGuard AI &mdash; NullPointers Team &mdash; IBM Bob AI Hackathon
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='js/assets.js') }}"></script>
+</body>
+</html>

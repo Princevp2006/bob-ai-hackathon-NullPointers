@@ -1,0 +1,173 @@
+{
+  "model_b_weather_severity": {
+    "cv": {
+      "cv_sample_size": 10000,
+      "lr_cv_f1_weighted_mean": 0.5339191821314169,
+      "lr_cv_f1_weighted_std": 0.01349075873410161,
+      "rf_cv_f1_weighted_mean": 0.6862323429775594,
+      "rf_cv_f1_weighted_std": 0.012795452104747388,
+      "lr_cv_f1_macro_mean": 0.34837728425758874,
+      "rf_cv_f1_macro_mean": 0.49918362672465866
+    },
+    "test_rf": {
+      "model_name": "RF_Main_test_FINAL",
+      "accuracy": 0.6107,
+      "classification_report": {
+        "LOW": {
+          "precision": 0.7209793161671592,
+          "recall": 0.6977836788887755,
+          "f1-score": 0.7091918824933825,
+          "support": 9791.0
+        },
+        "MEDIUM": {
+          "precision": 0.4477136431784108,
+          "recall": 0.4599537928378899,
+          "f1-score": 0.4537511870845204,
+          "support": 5194.0
+        },
+        "HIGH": {
+          "precision": 0.13150684931506848,
+          "recall": 0.25,
+          "f1-score": 0.17235188509874327,
+          "support": 192.0
+        },
+        "accuracy": 0.6107267575937273,
+        "macro avg": {
+          "precision": 0.4333999362202128,
+          "recall": 0.4692458239088884,
+          "f1-score": 0.44509831822554874,
+          "support": 15177.0
+        },
+        "weighted avg": {
+          "precision": 0.6200027978078549,
+          "recall": 0.6107267575937273,
+          "f1-score": 0.6149814159022643,
+          "support": 15177.0
+        }
+      },
+      "classification_report_str": "              precision    recall  f1-score   support\n\n         LOW       0.72      0.70      0.71      9791\n      MEDIUM       0.45      0.46      0.45      5194\n        HIGH       0.13      0.25      0.17       192\n\n    accuracy                           0.61     15177\n   macro avg       0.43      0.47      0.45     15177\nweighted avg       0.62      0.61      0.61     15177\n",
+      "confusion_matrix": [
+        [
+          6832,
+          2855,
+          104
+        ],
+        [
+          2592,
+          2389,
+          213
+        ],
+        [
+          52,
+          92,
+          48
+        ]
+      ],
+      "confusion_matrix_labels": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ],
+      "roc_auc_macro": 0.6589,
+      "n_test_samples": 15177,
+      "class_counts": {
+        "LOW": 9791,
+        "MEDIUM": 5194,
+        "HIGH": 192
+      }
+    },
+    "test_lr": {
+      "model_name": "LR_Baseline_test_FINAL",
+      "accuracy": 0.2483,
+      "classification_report": {
+        "LOW": {
+          "precision": 0.7120280948200176,
+          "recall": 0.2484935144520478,
+          "f1-score": 0.36841308298001213,
+          "support": 9791.0
+        },
+        "MEDIUM": {
+          "precision": 0.3545508625817965,
+          "recall": 0.22949557181363112,
+          "f1-score": 0.27863487611033194,
+          "support": 5194.0
+        },
+        "HIGH": {
+          "precision": 0.017027863777089782,
+          "recall": 0.7447916666666666,
+          "f1-score": 0.03329452852153667,
+          "support": 192.0
+        },
+        "accuracy": 0.24827040917177307,
+        "macro avg": {
+          "precision": 0.36120227372630126,
+          "recall": 0.40759358431078185,
+          "f1-score": 0.22678082920396025,
+          "support": 15177.0
+        },
+        "weighted avg": {
+          "precision": 0.5808969892915494,
+          "recall": 0.24827040917177307,
+          "f1-score": 0.3334489419154311,
+          "support": 15177.0
+        }
+      },
+      "classification_report_str": "              precision    recall  f1-score   support\n\n         LOW       0.71      0.25      0.37      9791\n      MEDIUM       0.35      0.23      0.28      5194\n        HIGH       0.02      0.74      0.03       192\n\n    accuracy                           0.25     15177\n   macro avg       0.36      0.41      0.23     15177\nweighted avg       0.58      0.25      0.33     15177\n",
+      "confusion_matrix": [
+        [
+          2433,
+          2139,
+          5219
+        ],
+        [
+          966,
+          1192,
+          3036
+        ],
+        [
+          18,
+          31,
+          143
+        ]
+      ],
+      "confusion_matrix_labels": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ],
+      "roc_auc_macro": 0.6204,
+      "n_test_samples": 15177,
+      "class_counts": {
+        "LOW": 9791,
+        "MEDIUM": 5194,
+        "HIGH": 192
+      }
+    },
+    "feature_importances": {
+      "state_enc": 0.22643906783989867,
+      "relh": 0.22045753932909995,
+      "tmpf": 0.16077900812526225,
+      "hour_of_day": 0.13285576886840803,
+      "sknt": 0.11487588611614231,
+      "year": 0.0636480605482363,
+      "month": 0.047029056353212355,
+      "p01i": 0.02527160485069069,
+      "season_enc": 0.008644007969049461
+    },
+    "split_info": {
+      "train_cutoff": "2021-01-01",
+      "n_train": 17962,
+      "n_test": 15177,
+      "train_class_dist": [
+        11199,
+        6499,
+        264
+      ],
+      "test_class_dist": [
+        9791,
+        5194,
+        192
+      ]
+    }
+  }
+}

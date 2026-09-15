@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PowerGuard AI — Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar__brand">&#9889; PowerGuard <span>AI</span></div>
+    <ul class="navbar__links">
+        <li><a href="/" class="active">Dashboard</a></li>
+        <li><a href="/assets">Assets</a></li>
+        <li><a href="/maintenance">Maintenance Plan</a></li>
+    </ul>
+</nav>
+
+<main class="main-content">
+
+    <div class="page-header">
+        <h1>Grid Risk Dashboard</h1>
+        <p>Real-time transformer health monitoring &amp; outage risk prediction</p>
+    </div>
+
+    <!-- KPI Row -->
+    <div class="kpi-row" id="kpi-row">
+        <div class="kpi-card kpi-card--total">
+            <span class="kpi-card__label">Total Assets</span>
+            <span class="kpi-card__value" id="kpi-total">—</span>
+            <span class="kpi-card__sub">monitored transformers</span>
+        </div>
+        <div class="kpi-card kpi-card--critical">
+            <span class="kpi-card__label">Critical</span>
+            <span class="kpi-card__value" id="kpi-critical">—</span>
+            <span class="kpi-card__sub">immediate action</span>
+        </div>
+        <div class="kpi-card kpi-card--high">
+            <span class="kpi-card__label">High Risk</span>
+            <span class="kpi-card__value" id="kpi-high">—</span>
+            <span class="kpi-card__sub">within 48 h</span>
+        </div>
+        <div class="kpi-card kpi-card--medium">
+            <span class="kpi-card__label">Medium Risk</span>
+            <span class="kpi-card__value" id="kpi-medium">—</span>
+            <span class="kpi-card__sub">schedule soon</span>
+        </div>
+        <div class="kpi-card kpi-card--low">
+            <span class="kpi-card__label">Low Risk</span>
+            <span class="kpi-card__value" id="kpi-low">—</span>
+            <span class="kpi-card__sub">routine monitoring</span>
+        </div>
+        <div class="kpi-card kpi-card--customers">
+            <span class="kpi-card__label">Customers at Risk</span>
+            <span class="kpi-card__value" id="kpi-customers">—</span>
+            <span class="kpi-card__sub">critical + high assets</span>
+        </div>
+    </div>
+
+    <!-- Actions Row -->
+    <div class="actions-row">
+        <button class="btn btn--outline btn--sm" id="btn-run-all">&#9654; Run All Predictions</button>
+        <button class="btn btn--primary btn--sm" id="btn-gen-plan">&#9881; Generate Maintenance Plan</button>
+    </div>
+    <div id="action-status"></div>
+
+    <!-- Charts Row -->
+    <div class="chart-grid">
+        <div class="chart-card">
+            <div class="chart-card__title">Risk Distribution</div>
+            <canvas id="chart-risk-dist"></canvas>
+        </div>
+        <div class="chart-card">
+            <div class="chart-card__title">Top Feature Importances (Model A)</div>
+            <canvas id="chart-feat-imp"></canvas>
+        </div>
+    </div>
+
+    <!-- Top Risks Table -->
+    <div class="panel">
+        <div class="panel__title">Top At-Risk Assets</div>
+        <div class="table-wrap">
+            <table id="top-risk-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Asset</th>
+                        <th>Region</th>
+                        <th>kV</th>
+                        <th>Risk Level</th>
+                        <th>Score</th>
+                        <th>Customers</th>
+                        <th>Model A</th>
+                        <th>Model B</th>
+                        <th>Predicted</th>
+                    </tr>
+                </thead>
+                <tbody id="top-risk-body">
+                    <tr><td colspan="10" class="table-empty">Loading…</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>
+
+<footer class="footer">
+    PowerGuard AI &mdash; NullPointers Team &mdash; IBM Bob AI Hackathon
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
